@@ -1,15 +1,16 @@
 <template>
   <div class="home">
     <Navbar class="center"><div slot="center">购物街</div></Navbar>
-
+    <tabcontrol    :title="['流行','新款','精选']" ref="tabcontrol02"   @tabClick="tabClick" v-show="tabcontentshow"  />
     <scroll class="wrapper"  ref="scroll"  :probe-type='3' :pull-up-load="true" 
       @scroll="contentscroll"
       @pullingUp="loadMore"
+     
       >
-    <home-swiper :banners=banners  />
+    <home-swiper :banners=banners   @swiperImageLoad="swiperImageLoad" />
     <Recommend :recommends=recommends />
     <feature/>
-    <tabcontrol  class="tabcontrol"  :title="['流行','新款','精选']" @tabClick="tabClick" />
+    <tabcontrol    :title="['流行','新款','精选']" ref="tabcontrol01"   @tabClick="tabClick"  />
     <goodsList  :goods="showGoods" />
     </scroll>
 
@@ -50,9 +51,33 @@ export default {
     this.getHomeGoods('pop');
     this.getHomeGoods('new');
     this.getHomeGoods('sell');
+
+    
+
+  },
+
+  mounted() {
+    const refresh = this.debounce(this.$refs.scroll.refresh,50)   //给创建页面 刷新防抖函数  注意传入的是一个函数没括号
+    this.$bus.$on('itemImageLoad',()=>{
+      refresh()
+    })
+
+    
   },
   
   methods:{
+    debounce(func,delay){
+      let timer = null
+      return function(...args){
+        if(timer) clearTimeout(timer)
+        timer = setTimeout(()=>{
+          func.apply(this, args)
+        },delay)
+      }  
+    },   //封装一个防抖函数
+
+
+
     //执行函数
     tabClick(index){
       switch(index){
@@ -66,22 +91,33 @@ export default {
           this.currentType = 'sell';
           break
       }
+      this.$refs.tabcontrol01.currentIndex = index
+      this.$refs.tabcontrol02.currentIndex = index
     },
 
 
     backClick(){
       this.$refs.scroll.scrollTop(0,0)
-    },
+    },  //点击回顶部
 
 
     contentscroll(position){
       this.isShowBackTop = (-position.y) >1000
-    },
+      this.tabcontentshow = (-position.y) >this.offsetTop
+    },//利用获取的坐标
 
     loadMore(){
       this.getHomeGoods(this.currentType)
-      this.$refs.scroll.scroll.refresh()
+      
     },
+
+    swiperImageLoad(){
+      
+      this.offsetTop = this.$refs.tabcontrol01.$el.offsetTop
+     
+    },
+
+
 
 
     //网络请求
@@ -111,7 +147,9 @@ export default {
         'sell':{page:0,list:[]},
       },
       currentType:'pop',
-      isShowBackTop:false
+      isShowBackTop:false,
+      offsetTop:0,
+      tabcontentshow:false
     }
   },
   computed: {
@@ -131,15 +169,11 @@ export default {
   color:#fff;
 }
 .home{
-  padding-top: 44px;
+  
   position: relative;
   height: 100vh;
 }
-.tabcontrol{
-  position:sticky;
-  top:44px;
-  z-index: 9;
-}
+
 .wrapper{
   overflow: hidden;
   position:absolute;
@@ -153,5 +187,8 @@ export default {
     overflow: hidden;
     margin-top: 44px;
 } */
-
+.tabcontrol{
+  position: relative;
+  z-index: 9;
+}
 </style>
