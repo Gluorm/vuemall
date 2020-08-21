@@ -28,7 +28,7 @@ import Scroll from "components/common/scroll/Scroll"
 import tabcontrol from "components/content/tabControl/TabControl"
 import goodsList from "components/content/goods/goodsList"
 import backTop from "components/content/backtop/backTop"
-
+import {itemListenerMixin}  from "common/mixin"
 
 import homeSwiper from './childComps/HomeSwiper'
 import Recommend from "./childComps/RecommendView"
@@ -51,31 +51,26 @@ export default {
     this.getHomeGoods('pop');
     this.getHomeGoods('new');
     this.getHomeGoods('sell');
-
-    
-
+  },
+  mixins:[itemListenerMixin],
+  mounted() {
+  
   },
 
-  mounted() {
-    const refresh = this.debounce(this.$refs.scroll.refresh,50)   //给创建页面 刷新防抖函数  注意传入的是一个函数没括号
-    this.$bus.$on('itemImageLoad',()=>{
-      refresh()
-    })
-
+  activated() {
+    this.$refs.scroll.refresh()
+    this.$refs.scroll.scrollTo(0,this.saveY,0)
     
+  },
+
+  deactivated() {
+    this.saveY = this.$refs.scroll.getScrollY()  //保存Y
+
+    this.$bus.$off('itemImageLoad',this.itemImgListener)
   },
   
   methods:{
-    debounce(func,delay){
-      let timer = null
-      return function(...args){
-        if(timer) clearTimeout(timer)
-        timer = setTimeout(()=>{
-          func.apply(this, args)
-        },delay)
-      }  
-    },   //封装一个防抖函数
-
+  
 
 
     //执行函数
@@ -97,7 +92,8 @@ export default {
 
 
     backClick(){
-      this.$refs.scroll.scrollTop(0,0)
+      this.$refs.scroll.scrollTo(0,0)
+      
     },  //点击回顶部
 
 
@@ -149,7 +145,8 @@ export default {
       currentType:'pop',
       isShowBackTop:false,
       offsetTop:0,
-      tabcontentshow:false
+      tabcontentshow:false,
+      saveY:0
     }
   },
   computed: {

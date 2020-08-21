@@ -12,6 +12,7 @@ export default {
   name: 'wrapper',
   mounted(){
     //创建实例
+    
     this.scroll = new BScroll(this.$refs.wrapper,{
     
       click:true,
@@ -30,7 +31,7 @@ export default {
 
   },
   methods: {
-    scrollTop(x,y,z=500){
+    scrollTo(x,y,z=500){
       this.scroll && this.scroll.scrollTo(x,y,z)
     },
 
@@ -45,8 +46,11 @@ export default {
     refresh(){
       this.scroll && this.scroll.refresh()
       
-    }
+    },
 
+    getScrollY(){
+      return this.scroll ? this.scroll.y :0
+    }
 
   },
   components: {},
