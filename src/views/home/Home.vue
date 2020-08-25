@@ -60,6 +60,7 @@ export default {
 
   activated() {
     this.$refs.scroll.refresh()
+    this.swiperImageLoad()
     this.$refs.scroll.scrollTo(0,this.saveY,0)
     
   },

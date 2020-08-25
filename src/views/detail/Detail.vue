@@ -82,7 +82,7 @@ export default {
     },
     NavbarClick(index){
      
-      this.$refs.scroll.scrollTo(0,-this.themeTopYs[index]+44,200)
+      this.$refs.scroll.scrollTo(0,-this.themeTopYs[index],200)
     },
     getindex(position){
       const positionY = -position.y

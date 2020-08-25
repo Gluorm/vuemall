@@ -1,6 +1,6 @@
 import { debouce } from './utils.js';
 import backTop from "components/content/backtop/backTop"
-
+import { POP, SELL, NEW } from "./const";
 export const itemListenerMixin = {
     data() {
         return {
@@ -37,4 +37,28 @@ export const backTopMixin = {
             this.isShowBackTop = (-position.y) > 1000
         }
     },
+}
+
+export const tabControlMixin = {
+    data: function() {
+        return {
+            currentType: POP
+        }
+    },
+    methods: {
+        tabClick(index) {
+            switch (index) {
+                case 0:
+                    this.currentType = POP
+                    break
+                case 1:
+                    this.currentType = NEW
+                    break
+                case 2:
+                    this.currentType = SELL
+                    break
+            }
+
+        }
+    }
 }

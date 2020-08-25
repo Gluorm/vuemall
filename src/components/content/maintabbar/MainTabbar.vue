@@ -1,24 +1,24 @@
 <template>
  
     <tabbar>
-        <baritem path="/home" activeColor="pink"> 
+        <baritem path="/home" > 
          <img slot="itemIcon" src="~assets/img/tabbar/home.png" alt="">
          <img slot="iconActive" src="~assets/img/tabbar/home_active.png" alt="">
          <div slot="itemtext"> 首页</div>
        </baritem>
-        <baritem path="/category" activeColor="pink">
+        <baritem path="/category">
          <img slot="itemIcon" src="~assets/img/tabbar/category.png" alt="">
          <img slot="iconActive" src="~assets/img/tabbar/category_active.png" alt="">
          <div slot="itemtext"> 分类</div>
        </baritem>
       
-      <baritem path="/cart" activeColor="pink">
+      <baritem path="/cart">
           <img slot="itemIcon" src="~assets/img/tabbar/cart.png" alt="">
           <img slot="iconActive" src="~assets/img/tabbar/cart_active.png" alt="">
           <div slot="itemtext"> 购物车</div>
         </baritem>
 
-         <baritem path="/profile" activeColor="pink">
+         <baritem path="/profile">
           <img slot="itemIcon" src="~assets/img/tabbar/profile.png" alt="">
           <img slot="iconActive" src="~assets/img/tabbar/profile_active.png" alt="">
           <div slot="itemtext"> 个人</div>
