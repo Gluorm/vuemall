@@ -18,6 +18,7 @@ export class Goods {
         this.columns = columns
         this.services = services
         this.realPrice = itemInfo.lowNowPrice
+        
     }
 } //把数据整合到一个对象
 
