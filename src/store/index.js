@@ -7,7 +7,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        cartList: []
+        cartList: [],
+        errortip:false
     },
     mutations,
     actions,

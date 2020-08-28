@@ -9,7 +9,7 @@
       合计：￥{{totalPrice}}
     </div>
 
-    <div class="reduce">
+    <div class="reduce" @click="reduce">
       结算({{pricecount}})
     </div>
   </div>
@@ -55,6 +55,9 @@ export default {
       }else{
         this.cartList.forEach(item=>item.checked = true)
       }
+    },
+    reduce(){
+      this.$toast.Tshow('请先登录',2000)
     }
   },
   }

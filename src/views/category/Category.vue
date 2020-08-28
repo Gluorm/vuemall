@@ -6,7 +6,7 @@
                 @selectItem="selectItem"></tab-menu>
       <div class="tab-content-rig">
       
-      <scroll id="tab-content" :data="[categoryData]">
+      <scroll id="tab-content" :data="[categoryData]" ref="scroll">
         <div>
           <tab-content-category :subcategories="showSubcategory"></tab-content-category>
          <tab-control  class="tabcontrol" :title="['综合', '新品', '销量']"
@@ -30,7 +30,7 @@
 
   import {getCategory, getSubcategory, getCategoryDetail} from "network/category";
   import {POP, SELL, NEW} from "common/const";
-  import {tabControlMixin} from "common/mixin";
+  import {tabControlMixin,itemListenerMixin} from "common/mixin";
 
   export default {
 		name: "Category",
@@ -42,7 +42,7 @@
       TabContentCategory,
       TabContentDetail
     },
-    mixins: [tabControlMixin],
+    mixins: [tabControlMixin,itemListenerMixin],
     data() {
 		  return {
 		    categories: [],
@@ -101,7 +101,9 @@
         const miniWallkey = this.categories[this.currentIndex].miniWallkey;
         // 2.发送请求,传入miniWallkey和type
 		    getCategoryDetail(miniWallkey, type).then(res => {
-		      // 3.将获取的数据保存下来
+          // 3.将获取的数据保存下来
+         res.forEach(item => item.image =item.img)
+         
 		      this.categoryData[this.currentIndex].categoryDetail[type] = res
           this.categoryData = {...this.categoryData}
         })

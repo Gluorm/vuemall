@@ -15,7 +15,7 @@ export default {
   components: {},
   computed: {
     showImage(){
-      return this.goodsItem.img || this.goodsItem.show.img || this.goodsItem.image
+      return this.goodsItem.image || this.goodsItem.show.img || this.goodsItem.img
     }
   },
   props: {
