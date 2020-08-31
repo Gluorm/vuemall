@@ -65,6 +65,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### 8.postcss-px-to-viewport 自动转px为vw 使其可以自动适应宽高
 
 安装
+```
   viewportWidth: 375, //视口的宽度，对应的时设计稿的宽度/2，一般为750
             viewportHeight: 667, //视口的高度，对应的是设计稿的高度（也可以不配置）
             unitPrecision: 5, //指定‘px’转换为视口单位值的小数位数（很多时候无法整除）
@@ -73,7 +74,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
             minPixelValue: 1, //小于或等于‘1px’不转换为视口单位
             mediaQuery: false, //允许在媒体查询中转换为‘px’
             exclude: [/Tabbar/] //不需要转化的组件文件名正则，必须是正则表达式
-
+```
  ### 9.图片懒加载插件 vue-lazyload
  安装->导入->use-> <img :v-lazy="">
  
