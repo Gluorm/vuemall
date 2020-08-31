@@ -47,7 +47,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     
 
 ### 6.跨域问题绝决
-
+ ```
  proxy: {
            '/api': {
             target: '（ip）',
@@ -55,7 +55,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
             pathRewrite: {
              '^/api': '/'
             }
-
+```
             
 ### 7.fastclick 解决移动端300ms延迟问题
 
