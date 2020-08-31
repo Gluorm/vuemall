@@ -42,10 +42,13 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
   1.封装GridView框架 可用来方便设置展示n列数据，及边距布局的设置
 
 ### 5.个人页
-  1.登陆注册
+  
+  ## 1.登陆注册
     1.mysql+php，封装mysql+php 登陆注册与服务器接口
     2.把请求到的token 放到vuex 和localStorage 判断其是否登录
-  2.退出
+  
+   
+  ## 2.退出
     把请求到的token清除
     
 
