@@ -18,6 +18,9 @@ npm run build
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+
+### 网络地址 http://47.113.82.179/
+
 ### 笔记
 ### 1.搭建tabbar组件 配置基本路由  完成页面基本框架
 
