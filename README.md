@@ -86,4 +86,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
  ### 10.服务器部署
   宝塔面板部署 LNMP 环境
   修改Nginx配置文件  使刷新不会404
+    '''
      error_page 404 /index.html;
+    '''
