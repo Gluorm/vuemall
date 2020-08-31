@@ -78,7 +78,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
         }
 ```
  ### 9.图片懒加载插件 vue-lazyload
- 安装->导入->use-> '''<img :v-lazy="">'''
+ 安装->导入->use-> img :v-lazy=""
  
  ### 10.服务器部署
   宝塔面板部署 LNMP 环境
